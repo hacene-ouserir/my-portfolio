@@ -1,5 +1,7 @@
 # Use the official PHP image as the base image
 FROM php:8.3-apache
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 # Copy the project

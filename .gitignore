@@ -1,6 +1,5 @@
 # Composer dependencies
 /node_modules
-/pnpm-lock.yaml
 /vendor
 /.env
 /fiveserver.config.js

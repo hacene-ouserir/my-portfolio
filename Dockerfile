@@ -8,6 +8,14 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+# Enable required Apache modules
+RUN a2enmod \
+    rewrite \
+    headers \
+    mime \
+    deflate
+# Enable Brotli if available (optional)
+RUN a2enmod brotli || true
 # Enable Apache rewrite
 RUN a2enmod rewrite
 # Set the working directory

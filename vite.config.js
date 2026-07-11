@@ -10,6 +10,39 @@ export default defineConfig({
     //   template: "treemap",            // "sunburst", "network", "treemap"
     //   open: true,                     // auto-open after build
     // }),
+    compression({
+      algorithms: [
+        'gzip',
+        'brotliCompress'
+      ],
+      ext: '.gz',
+      deleteOriginalAssets: false,
+
+      include: [
+        '**/*.js',
+        '**/*.css'
+      ],
+
+      exclude: [
+        '**/sw.js',
+        '**/workbox-*.js'
+      ]
+    }),
+    compression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      deleteOriginalAssets: false,
+
+      include: [
+        '**/*.js',
+        '**/*.css'
+      ],
+
+      exclude: [
+        '**/sw.js',
+        '**/workbox-*.js'
+      ]
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: false,
@@ -75,7 +108,7 @@ export default defineConfig({
         cacheId: 'ho',
         skipWaiting: true,
         clientsClaim: true,
-        globPatterns: ['**/*.{json,js,css,png,jpg,jpeg,webp,svg,ico,ttf,br,gz}'],
+        globPatterns: ['**/*.{json,js,css,png,jpg,jpeg,webp,svg,ico,ttf}'],
         globIgnores: [
           '**/*.php',   // ignore PHP files
           'sitemap.xml',   // ignore sitemap
@@ -99,12 +132,6 @@ export default defineConfig({
         enabled: true
       }
     }),
-    compression({
-      algorithms: [
-        'gzip',
-        'brotliCompress'
-      ]
-    })
   ],
   // css: {
   // },
